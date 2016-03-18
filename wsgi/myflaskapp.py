@@ -36,10 +36,21 @@ def get_userinfo(phonenumber):
 def admin_login():
     return render_template("admin_login.html")
 
+@app.route('/map.html')
+def map():
+    return render_template("map.html")
+
 
 @app.route('/admin_student_status.html')
 def admin_student_status():
     pending = database_driver.get_students_info()
-    return render_template('admin_student_status.html', pending=pending)
+    declined = database_driver.get_students_info()
+    return render_template('admin_student_status.html', pending=pending,declined=declined)
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
