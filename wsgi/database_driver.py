@@ -6,7 +6,7 @@ if URL:
     client = pymongo.MongoClient(URL)
 else:
     client = pymongo.MongoClient("localhost", 27017)
-
+client.drop_database("backend")
 
 def post_userinfo(userinfo):
     db = client.backend
@@ -14,7 +14,7 @@ def post_userinfo(userinfo):
     for k, v in userinfo.items():
         info[k] = v
     return db.userinfo.insert_one(info)
-
+#put location as a val
 
 def get_userinfo(phonenumber):
     db = client.backend
